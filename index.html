@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="style.css" rel="stylesheet">
+    <script async src="cv.js"></script>
+    <script src='face-detection.js'></script>
+    <script src='signalling.js'></script>
+    <script src='main.js'></script>
+</head>
+
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">HOME</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <main role="main" class="inner cover">
+            <input required type="text" id="address" width="200px" value="" class="d-none" disabled /><a id="link"></a>
+            <div class="row" >
+                    <button id="start" type="button" class="btn btn-primary">Start</button>
+                    <button id="stop" type="button" class="btn btn-primary">Stop</button>
+                    <button id="effect" type="button" class="btn btn-primary">Toggle Face Detection</button>
+                    <button id="take" type="button" class="btn btn-primary">Take a photo</button>
+            </div>
+            <div class="row">
+                <video id="v" width="800" height="600"></video>
+                <canvas id="c" width="640" height="480"></canvas>
+            </div>
+
+
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+        var Module = {
+            preRun: [],
+            postRun: [],
+            print: (function () {
+                return function (text) {
+                    text = Array.prototype.slice.call(arguments).join(' ');
+                    console.log(text);
+                };
+            })(),
+            printErr: function (text) {
+                text = Array.prototype.slice.call(arguments).join(' ');
+                console.error(text);
+            }
+        };
+        var address = document.getElementById('address').value;
+        if (!address || address === '') {
+            var hostname = location.hostname;
+            if (hostname) {
+                address = hostname + ':' + (location.port || (location.protocol === 'https:' ? 443 : 80)) + '/webrtc';
+                document.getElementById('address').value = address;
+                
+            } else {
+                document.getElementById('address').value = "<host>:<port>/webrtc";
+            }
+        }
+    </script>
+</body>
+
+</html>
